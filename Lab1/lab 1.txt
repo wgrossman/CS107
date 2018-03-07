@@ -1,0 +1,21 @@
+2.1 ------------------------- 
+wrote function roundup.c to check this
+
+Value of roundup(9, 2)
+(9 + 2-1) & ~(1)
+0b1010 & 0b111...0 = 0b1010
+return value is 10 (correct)
+
+(33+ 32-1) & ~(31)
+64 & ~31
+0b1000000 & 0b11...100000 (this is bitwise and'ing)
+0b1000000 --> 64 (correct)
+
+(4 + 3) & ~(3)
+0b111 & 1100 = 0b100 = 4 (correct)
+
+2.2 ------------------------
+size_t is always unsigned. In this case it must be an unsigned int. Don't use int because signed values won't work here.
+
+2.3 ------------------------
+It's incrementing the value to be rounded by one less than the rounding multiple. This is then and'ed with the inverst of one minus the multiple. One minus the multiple, when inverted, and if the multiple is a power of two, means it will place zero's everywhere below the binary digit equal to log2(multiple). This makes zeros out of any digits below the rounding value. By adding 
